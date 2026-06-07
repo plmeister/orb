@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Orb.Abstractions/Orb.Abstractions.csproj" />
+  <Project Path="Orb.Core/Orb.Core.csproj" />
+  <Project Path="Orb.Host/Orb.Host.csproj" />
+  <Project Path="Orb.Storage/Orb.Storage.csproj" />
+  <Project Path="Orb.Transport.Discord/Orb.Transport.Discord.csproj" />
+</Solution>
