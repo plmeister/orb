@@ -4,4 +4,6 @@
   <Project Path="Orb.Host/Orb.Host.csproj" />
   <Project Path="Orb.Storage/Orb.Storage.csproj" />
   <Project Path="Orb.Transport.Discord/Orb.Transport.Discord.csproj" />
+  <Project Path="Orb.Transport.Console/Orb.Transport.Console.csproj" />
+  <Project Path="Orb.Tests/Orb.Tests.csproj" />
 </Solution>

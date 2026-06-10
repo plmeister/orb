@@ -49,7 +49,8 @@ public sealed class ConsoleTransport(IEventBus bus) : ITransport
 
     public Task SendAsync(OrbAction action, CancellationToken ct)
     {
-        System.Console.WriteLine($"[ACTION] {action.Type} {action.Data["content"]}");
+        var content = action.Data.TryGetValue("content", out var c) ? c : "(no content)";
+        System.Console.WriteLine($"[ACTION] {action.Type} {content}");
         return Task.CompletedTask;
     }
 }

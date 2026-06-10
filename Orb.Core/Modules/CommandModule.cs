@@ -17,7 +17,7 @@ public abstract class CommandModule : IModule
         }
         else
         {
-            _ = HandleEvent(e, ctx, ct);
+            _ = SafeHandleEvent(e, ctx, ct);
         }
     }
 
@@ -28,4 +28,16 @@ public abstract class CommandModule : IModule
     ) => false;
 
     public virtual async Task ExecuteAsync(OrbEvent e, IKernelContext ctx, CancellationToken ct) { }
+
+    private async Task SafeHandleEvent(OrbEvent e, IKernelContext ctx, CancellationToken ct)
+    {
+        try
+        {
+            await HandleEvent(e, ctx, ct);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"HandleEvent failed: {ex}");
+        }
+    }
 }

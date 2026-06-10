@@ -10,9 +10,9 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddSimpleConsole(o =>
 {
-    o.SingleLine = true;
-    o.TimestampFormat = "HH:mm:ss ";
-    o.IncludeScopes = true;
+  o.SingleLine = true;
+  o.TimestampFormat = "HH:mm:ss ";
+  o.IncludeScopes = true;
 });
 
 builder.Services.AddSingleton<Kernel>();
@@ -23,7 +23,7 @@ builder.Services.AddSingleton<IActionChannel, ActionChannel>();
 builder.Services.AddSingleton<IEventBus, EventBus>();
 builder.Services.AddSingleton<IEventSink>(sp => sp.GetRequiredService<Kernel>());
 
-builder.Services.AddSingleton<IStorage>(_ => new FileStorage("./data"));
+builder.Services.AddSingleton<IStorage>(sp => new FileStorage("./data", sp.GetRequiredService<ILogger<FileStorage>>()));
 
 builder.Services.AddSingleton<IActionScheduler, ActionScheduler>();
 
@@ -45,9 +45,9 @@ builder
     .Services.AddDiscordTransport()
     .Configure(opts =>
     {
-        opts.Token =
-            builder.Configuration["Discord:Token"]
-            ?? throw new InvalidOperationException("Missing Discord token");
+      opts.Token =
+          builder.Configuration["Discord:Token"]
+          ?? throw new InvalidOperationException("Missing Discord token");
     })
     .Register();
 
